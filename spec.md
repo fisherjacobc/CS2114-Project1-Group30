@@ -171,7 +171,7 @@ Description/Purpose, Data & State, and Method Signatures
 
         - Parameters 
 
-            - boolean loadWithBlankData 
+            - boolean loadWithdefaultData 
 
                 - When true, load the application fresh/with the default data (empty reviews array, certain locations & meals already added) 
 
@@ -413,9 +413,9 @@ Validation will mainly happen when the user enters a new review. The program wil
 
     - When loadData(false) is called, the program will attempt to read the existing JSON file using Gson. 
 
-    - If the file is missing, corrupted, or cannot be read, the program will not immediately crash. Instead, it will inform the user that the saved data could not be loaded and give them the option to try loading again or start with blank/default data using loadData(true); 
+    - If the file is missing, corrupted, or cannot be read, the program will not immediately crash. Instead, it will inform the user that the saved data could not be loaded and give them the option to try loading again or start with default data using loadData(true); 
 
-    - When blank/default data is loaded, the reviews list will start empty while the default locations and meals will be added. 
+    - When default data is loaded, the reviews list will start empty while the default locations and meals will be added. 
 
     - Once the data has been successfully loaded, the initialized value will be set to true. 
 
@@ -519,7 +519,7 @@ Our main goal for HokieBytes has stayed the same. The program will allow Virgini
 
 - More specific data-loading behavior 
 
-    - We added a loadData(boolean loadWithBlankData) method. If loadWithBlankData is true, the application starts with an empty review list and default meal and location information. If it is false, the program attempts to load previously saved information. 
+    - We added a loadData(boolean loadWithdefaultData) method. If loadWithdefaultData is true, the application starts with an empty review list and default meal and location information. If it is false, the program attempts to load previously saved information. 
 
     - We also decided that the program should handle a missing or corrupted save file instead of crashing. 
 
