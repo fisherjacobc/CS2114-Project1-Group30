@@ -1,0 +1,12 @@
+{
+    "java.dependency.packagePresentation": "hierarchical",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ],
+    "java.autobuild.enabled": true,
+    "java.test.config": {
+        "coverage": {
+            "excludes": ["**/Main.java"]
+        }
+    }
+}
