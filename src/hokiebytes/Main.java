@@ -27,11 +27,10 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         DataHandler.loadData();
 
-        Thread.sleep(500L);
+        Thread.sleep(1000L);
 
         displayMainMenu();
     }
-
 
     /**
      * Displays the main menu.
@@ -58,31 +57,24 @@ public class Main {
 
             if (choice == 1) {
                 displayReviews();
-            }
-            else if (choice == 2) {
+            } else if (choice == 2) {
                 displayManageReviewMenu();
-            }
-            else if (choice == 3) {
+            } else if (choice == 3) {
                 displayManageMealMenu();
-            }
-            else if (choice == 4) {
+            } else if (choice == 4) {
                 displayManageKnownLocationsMenu();
-            }
-            else if (choice == 5) {
+            } else if (choice == 5) {
                 DataHandler.saveData();
                 pause();
-            }
-            else if (choice == 6) {
+            } else if (choice == 6) {
                 DataHandler.saveData();
                 running = false;
-            }
-            else {
+            } else {
                 System.out.println("Invalid Choice! Please try again.");
                 pause();
             }
         }
     }
-
 
     /**
      * Detects integer menu input.
@@ -101,22 +93,19 @@ public class Main {
         return choice;
     }
 
-
     /**
      * Displays all saved reviews.
      */
     private static void displayReviews() {
         clearScreen();
 
-        ArrayList<Review> reviews =
-            DataHandler.getReviews().getArrayList();
+        ArrayList<Review> reviews = DataHandler.getReviews().getArrayList();
 
         System.out.println("┌──Reviews──────────────────────────────┐");
 
         if (reviews.isEmpty()) {
             System.out.println("│ No reviews have been added yet.        │");
-        }
-        else {
+        } else {
             for (int i = 0; i < reviews.size(); i++) {
                 Review review = reviews.get(i);
 
@@ -124,11 +113,11 @@ public class Main {
                 System.out.println("Review #" + (i + 1));
                 System.out.println("Meal: " + review.meal().name());
                 System.out.println(
-                    "Location: " + review.meal().location());
+                        "Location: " + review.meal().location());
                 System.out.println("Rating: " + review.rating() + "/5");
 
                 if (review.notes() != null
-                    && !review.notes().isEmpty()) {
+                        && !review.notes().isEmpty()) {
                     System.out.println("Notes: " + review.notes());
                 }
             }
@@ -139,7 +128,6 @@ public class Main {
 
         pause();
     }
-
 
     /**
      * Displays the menu for managing reviews.
@@ -164,23 +152,18 @@ public class Main {
 
             if (choice == 1) {
                 addReview();
-            }
-            else if (choice == 2) {
+            } else if (choice == 2) {
                 updateReview();
-            }
-            else if (choice == 3) {
+            } else if (choice == 3) {
                 removeReview();
-            }
-            else if (choice == 4) {
+            } else if (choice == 4) {
                 managing = false;
-            }
-            else {
+            } else {
                 System.out.println("Invalid Choice!");
                 pause();
             }
         }
     }
-
 
     /**
      * Adds a new review.
@@ -208,23 +191,20 @@ public class Main {
         Meal meal = new Meal(mealName, location);
         Review review = new Review(meal, rating, notes);
 
-        boolean added =
-            DataHandler.getReviews().add(review);
+        boolean added = DataHandler.getReviews().add(review);
 
         if (added) {
             DataHandler.getMeals().add(meal);
             DataHandler.getKnownLocations().add(location);
 
             System.out.println("Review successfully added.");
-        }
-        else {
+        } else {
             System.out.println(
-                "A review for this meal already exists.");
+                    "A review for this meal already exists.");
         }
 
         pause();
     }
-
 
     /**
      * Updates an existing review.
@@ -232,8 +212,7 @@ public class Main {
     private static void updateReview() {
         clearScreen();
 
-        ArrayList<Review> reviews =
-            DataHandler.getReviews().getArrayList();
+        ArrayList<Review> reviews = DataHandler.getReviews().getArrayList();
 
         if (reviews.isEmpty()) {
             System.out.println("There are no reviews to update.");
@@ -270,8 +249,7 @@ public class Main {
         }
 
         Meal newMeal = new Meal(mealName, location);
-        Review updatedReview =
-            new Review(newMeal, rating, notes);
+        Review updatedReview = new Review(newMeal, rating, notes);
 
         /*
          * Review.equals() only compares the meal, so removing the old
@@ -279,26 +257,23 @@ public class Main {
          */
         DataHandler.getReviews().remove(oldReview);
 
-        boolean updated =
-            DataHandler.getReviews().add(updatedReview);
+        boolean updated = DataHandler.getReviews().add(updatedReview);
 
         if (updated) {
             DataHandler.getMeals().add(newMeal);
             DataHandler.getKnownLocations().add(location);
 
             System.out.println("Review successfully updated.");
-        }
-        else {
+        } else {
             DataHandler.getReviews().add(oldReview);
 
             System.out.println(
-                "Review could not be updated because "
-                    + "that meal already has a review.");
+                    "Review could not be updated because "
+                            + "that meal already has a review.");
         }
 
         pause();
     }
-
 
     /**
      * Removes an existing review.
@@ -306,8 +281,7 @@ public class Main {
     private static void removeReview() {
         clearScreen();
 
-        ArrayList<Review> reviews =
-            DataHandler.getReviews().getArrayList();
+        ArrayList<Review> reviews = DataHandler.getReviews().getArrayList();
 
         if (reviews.isEmpty()) {
             System.out.println("There are no reviews to remove.");
@@ -335,7 +309,6 @@ public class Main {
         pause();
     }
 
-
     /**
      * Displays the menu for managing meals.
      */
@@ -359,23 +332,18 @@ public class Main {
 
             if (choice == 1) {
                 addMeal();
-            }
-            else if (choice == 2) {
+            } else if (choice == 2) {
                 updateMeal();
-            }
-            else if (choice == 3) {
+            } else if (choice == 3) {
                 removeMeal();
-            }
-            else if (choice == 4) {
+            } else if (choice == 4) {
                 managing = false;
-            }
-            else {
+            } else {
                 System.out.println("Invalid Choice!");
                 pause();
             }
         }
     }
-
 
     /**
      * Adds a meal.
@@ -394,14 +362,12 @@ public class Main {
         if (DataHandler.getMeals().add(meal)) {
             DataHandler.getKnownLocations().add(location);
             System.out.println("Meal successfully added.");
-        }
-        else {
+        } else {
             System.out.println("That meal already exists.");
         }
 
         pause();
     }
-
 
     /**
      * Updates a meal.
@@ -409,8 +375,7 @@ public class Main {
     private static void updateMeal() {
         clearScreen();
 
-        ArrayList<Meal> meals =
-            DataHandler.getMeals().getArrayList();
+        ArrayList<Meal> meals = DataHandler.getMeals().getArrayList();
 
         if (meals.isEmpty()) {
             System.out.println("There are no meals to update.");
@@ -439,21 +404,18 @@ public class Main {
 
         Meal updatedMeal = new Meal(name, location);
 
-        boolean updated =
-            DataHandler.getMeals().update(oldMeal, updatedMeal);
+        boolean updated = DataHandler.getMeals().update(oldMeal, updatedMeal);
 
         if (updated) {
             DataHandler.getKnownLocations().add(location);
             System.out.println("Meal successfully updated.");
-        }
-        else {
+        } else {
             System.out.println(
-                "Meal could not be updated.");
+                    "Meal could not be updated.");
         }
 
         pause();
     }
-
 
     /**
      * Removes a meal.
@@ -461,8 +423,7 @@ public class Main {
     private static void removeMeal() {
         clearScreen();
 
-        ArrayList<Meal> meals =
-            DataHandler.getMeals().getArrayList();
+        ArrayList<Meal> meals = DataHandler.getMeals().getArrayList();
 
         if (meals.isEmpty()) {
             System.out.println("There are no meals to remove.");
@@ -490,7 +451,6 @@ public class Main {
         pause();
     }
 
-
     /**
      * Displays the menu for managing known locations.
      */
@@ -514,23 +474,18 @@ public class Main {
 
             if (choice == 1) {
                 addLocation();
-            }
-            else if (choice == 2) {
+            } else if (choice == 2) {
                 updateLocation();
-            }
-            else if (choice == 3) {
+            } else if (choice == 3) {
                 removeLocation();
-            }
-            else if (choice == 4) {
+            } else if (choice == 4) {
                 managing = false;
-            }
-            else {
+            } else {
                 System.out.println("Invalid Choice!");
                 pause();
             }
         }
     }
-
 
     /**
      * Adds a known location.
@@ -543,14 +498,12 @@ public class Main {
 
         if (DataHandler.getKnownLocations().add(location)) {
             System.out.println("Location successfully added.");
-        }
-        else {
+        } else {
             System.out.println("That location already exists.");
         }
 
         pause();
     }
-
 
     /**
      * Updates a known location.
@@ -558,8 +511,7 @@ public class Main {
     private static void updateLocation() {
         clearScreen();
 
-        ArrayList<String> locations =
-            DataHandler.getKnownLocations().getArrayList();
+        ArrayList<String> locations = DataHandler.getKnownLocations().getArrayList();
 
         if (locations.isEmpty()) {
             System.out.println("There are no locations to update.");
@@ -584,18 +536,16 @@ public class Main {
         String newLocation = input.nextLine();
 
         if (DataHandler.getKnownLocations()
-            .update(oldLocation, newLocation)) {
+                .update(oldLocation, newLocation)) {
 
             System.out.println("Location successfully updated.");
-        }
-        else {
+        } else {
             System.out.println(
-                "Location could not be updated.");
+                    "Location could not be updated.");
         }
 
         pause();
     }
-
 
     /**
      * Removes a known location.
@@ -603,8 +553,7 @@ public class Main {
     private static void removeLocation() {
         clearScreen();
 
-        ArrayList<String> locations =
-            DataHandler.getKnownLocations().getArrayList();
+        ArrayList<String> locations = DataHandler.getKnownLocations().getArrayList();
 
         if (locations.isEmpty()) {
             System.out.println("There are no locations to remove.");
@@ -632,7 +581,6 @@ public class Main {
         pause();
     }
 
-
     /**
      * Gets a valid rating from 1 through 5.
      *
@@ -649,16 +597,14 @@ public class Main {
                 if (rating >= 1 && rating <= 5) {
                     return rating;
                 }
-            }
-            else {
+            } else {
                 input.nextLine();
             }
 
             System.out.println(
-                "Invalid rating. Please enter an integer from 1 to 5.");
+                    "Invalid rating. Please enter an integer from 1 to 5.");
         }
     }
-
 
     /**
      * Displays reviews with numbers.
@@ -666,22 +612,21 @@ public class Main {
      * @param reviews reviews to display
      */
     private static void showReviewNumbers(
-        ArrayList<Review> reviews) {
+            ArrayList<Review> reviews) {
 
         for (int i = 0; i < reviews.size(); i++) {
             Review review = reviews.get(i);
 
             System.out.println(
-                "[" + (i + 1) + "] "
-                    + review.meal().name()
-                    + " - "
-                    + review.meal().location()
-                    + " - "
-                    + review.rating()
-                    + "/5");
+                    "[" + (i + 1) + "] "
+                            + review.meal().name()
+                            + " - "
+                            + review.meal().location()
+                            + " - "
+                            + review.rating()
+                            + "/5");
         }
     }
-
 
     /**
      * Displays meals with numbers.
@@ -689,17 +634,16 @@ public class Main {
      * @param meals meals to display
      */
     private static void showMealNumbers(
-        ArrayList<Meal> meals) {
+            ArrayList<Meal> meals) {
 
         for (int i = 0; i < meals.size(); i++) {
             System.out.println(
-                "[" + (i + 1) + "] "
-                    + meals.get(i).name()
-                    + " - "
-                    + meals.get(i).location());
+                    "[" + (i + 1) + "] "
+                            + meals.get(i).name()
+                            + " - "
+                            + meals.get(i).location());
         }
     }
-
 
     /**
      * Displays locations with numbers.
@@ -707,15 +651,14 @@ public class Main {
      * @param locations locations to display
      */
     private static void showLocationNumbers(
-        ArrayList<String> locations) {
+            ArrayList<String> locations) {
 
         for (int i = 0; i < locations.size(); i++) {
             System.out.println(
-                "[" + (i + 1) + "] "
-                    + locations.get(i));
+                    "[" + (i + 1) + "] "
+                            + locations.get(i));
         }
     }
-
 
     /**
      * Pauses until the user presses Enter.
@@ -725,7 +668,6 @@ public class Main {
         System.out.print("Press Enter to continue...");
         input.nextLine();
     }
-
 
     /**
      * Clears the terminal screen.
