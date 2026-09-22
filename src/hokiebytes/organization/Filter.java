@@ -1,6 +1,8 @@
-package hokiebytes;
+package hokiebytes.organization;
 
 import java.util.ArrayList;
+
+import hokiebytes.Review;
 
 /**
  * Provides methods for filtering reviews.
@@ -11,17 +13,16 @@ public class Filter {
      * Filters reviews by dining location.
      *
      * @param reviews
-     *            the reviews to filter
+     *                 the reviews to filter
      * @param location
-     *            the location to find
+     *                 the location to find
      * @return reviews from the given location
      */
     public static ArrayList<Review> filterByLocation(
-        ArrayList<Review> reviews,
-        String location) {
+            ArrayList<Review> reviews,
+            String location) {
 
-        ArrayList<Review> result =
-            new ArrayList<Review>();
+        ArrayList<Review> result = new ArrayList<Review>();
 
         if (reviews == null || location == null) {
             return result;
@@ -30,7 +31,7 @@ public class Filter {
         for (Review review : reviews) {
 
             if (review.meal().location()
-                .equalsIgnoreCase(location)) {
+                    .equalsIgnoreCase(location)) {
 
                 result.add(review);
             }

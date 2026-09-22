@@ -1,8 +1,10 @@
-package hokiebytes;
+package hokiebytes.organization;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import hokiebytes.Review;
 
 /**
  * Provides methods for sorting reviews.
@@ -14,15 +16,15 @@ public class Sort {
      * The last review in the list is the most recent.
      *
      * @param reviews
-     *            the reviews to sort
+     *                 the reviews to sort
      * @param reversed
-     *            false for most recent first,
-     *            true for least recent first
+     *                 false for most recent first,
+     *                 true for least recent first
      * @return a sorted copy of the reviews
      */
     public static ArrayList<Review> sortByMostRecent(
-        ArrayList<Review> reviews,
-        boolean reversed) {
+            ArrayList<Review> reviews,
+            boolean reversed) {
 
         ArrayList<Review> result = new ArrayList<Review>();
 
@@ -39,19 +41,18 @@ public class Sort {
         return result;
     }
 
-
     /**
      * Sorts reviews alphabetically by meal name.
      *
      * @param reviews
-     *            the reviews to sort
+     *                 the reviews to sort
      * @param reversed
-     *            false for A-Z, true for Z-A
+     *                 false for A-Z, true for Z-A
      * @return a sorted copy of the reviews
      */
     public static ArrayList<Review> sortAlphabetically(
-        ArrayList<Review> reviews,
-        boolean reversed) {
+            ArrayList<Review> reviews,
+            boolean reversed) {
 
         ArrayList<Review> result = new ArrayList<Review>();
 
@@ -65,7 +66,7 @@ public class Sort {
             @Override
             public int compare(Review first, Review second) {
                 return first.meal().name().compareToIgnoreCase(
-                    second.meal().name());
+                        second.meal().name());
             }
         });
 
@@ -76,20 +77,19 @@ public class Sort {
         return result;
     }
 
-
     /**
      * Sorts reviews by rating.
      *
      * @param reviews
-     *            the reviews to sort
+     *                 the reviews to sort
      * @param reversed
-     *            false for highest to lowest,
-     *            true for lowest to highest
+     *                 false for highest to lowest,
+     *                 true for lowest to highest
      * @return a sorted copy of the reviews
      */
     public static ArrayList<Review> sortByRating(
-        ArrayList<Review> reviews,
-        boolean reversed) {
+            ArrayList<Review> reviews,
+            boolean reversed) {
 
         ArrayList<Review> result = new ArrayList<Review>();
 
