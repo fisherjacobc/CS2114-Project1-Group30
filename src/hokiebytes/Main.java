@@ -27,7 +27,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         DataHandler.loadData();
 
-        Thread.sleep(1000L);
+        pause();
 
         displayMainMenu();
     }
@@ -35,7 +35,7 @@ public class Main {
     /**
      * Displays the main menu.
      */
-    private static void displayMainMenu() {
+    private static void displayMainMenu() throws InterruptedException {
         boolean running = true;
 
         while (running) {
@@ -96,7 +96,7 @@ public class Main {
     /**
      * Displays all saved reviews.
      */
-    private static void displayReviews() {
+    private static void displayReviews() throws InterruptedException {
         clearScreen();
 
         ArrayList<Review> reviews = DataHandler.getReviews().getArrayList();
@@ -132,7 +132,7 @@ public class Main {
     /**
      * Displays the menu for managing reviews.
      */
-    private static void displayManageReviewMenu() {
+    private static void displayManageReviewMenu() throws InterruptedException {
         boolean managing = true;
 
         while (managing) {
@@ -168,7 +168,7 @@ public class Main {
     /**
      * Adds a new review.
      */
-    private static void addReview() {
+    private static void addReview() throws InterruptedException {
         clearScreen();
 
         System.out.println("──Add Review──");
@@ -209,7 +209,7 @@ public class Main {
     /**
      * Updates an existing review.
      */
-    private static void updateReview() {
+    private static void updateReview() throws InterruptedException {
         clearScreen();
 
         ArrayList<Review> reviews = DataHandler.getReviews().getArrayList();
@@ -278,7 +278,7 @@ public class Main {
     /**
      * Removes an existing review.
      */
-    private static void removeReview() {
+    private static void removeReview() throws InterruptedException {
         clearScreen();
 
         ArrayList<Review> reviews = DataHandler.getReviews().getArrayList();
@@ -312,7 +312,7 @@ public class Main {
     /**
      * Displays the menu for managing meals.
      */
-    private static void displayManageMealMenu() {
+    private static void displayManageMealMenu() throws InterruptedException {
         boolean managing = true;
 
         while (managing) {
@@ -348,7 +348,7 @@ public class Main {
     /**
      * Adds a meal.
      */
-    private static void addMeal() {
+    private static void addMeal() throws InterruptedException {
         clearScreen();
 
         System.out.print("Meal name: ");
@@ -372,7 +372,7 @@ public class Main {
     /**
      * Updates a meal.
      */
-    private static void updateMeal() {
+    private static void updateMeal() throws InterruptedException {
         clearScreen();
 
         ArrayList<Meal> meals = DataHandler.getMeals().getArrayList();
@@ -420,7 +420,7 @@ public class Main {
     /**
      * Removes a meal.
      */
-    private static void removeMeal() {
+    private static void removeMeal() throws InterruptedException {
         clearScreen();
 
         ArrayList<Meal> meals = DataHandler.getMeals().getArrayList();
@@ -454,7 +454,7 @@ public class Main {
     /**
      * Displays the menu for managing known locations.
      */
-    private static void displayManageKnownLocationsMenu() {
+    private static void displayManageKnownLocationsMenu() throws InterruptedException {
         boolean managing = true;
 
         while (managing) {
@@ -490,7 +490,7 @@ public class Main {
     /**
      * Adds a known location.
      */
-    private static void addLocation() {
+    private static void addLocation() throws InterruptedException {
         clearScreen();
 
         System.out.print("Location name: ");
@@ -508,7 +508,7 @@ public class Main {
     /**
      * Updates a known location.
      */
-    private static void updateLocation() {
+    private static void updateLocation() throws InterruptedException {
         clearScreen();
 
         ArrayList<String> locations = DataHandler.getKnownLocations().getArrayList();
@@ -550,7 +550,7 @@ public class Main {
     /**
      * Removes a known location.
      */
-    private static void removeLocation() {
+    private static void removeLocation() throws InterruptedException {
         clearScreen();
 
         ArrayList<String> locations = DataHandler.getKnownLocations().getArrayList();
@@ -663,10 +663,15 @@ public class Main {
     /**
      * Pauses until the user presses Enter.
      */
-    private static void pause() {
+    private static void pause() throws InterruptedException {
         System.out.println();
         System.out.print("Press Enter to continue...");
-        input.nextLine();
+        try {
+            input.nextLine();
+        } catch (Exception e) {
+            // Continue on after 1 second
+            Thread.sleep(1000L);
+        }
     }
 
     /**
