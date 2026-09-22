@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import hokiebytes.data.DataHandler;
+import hokiebytes.organization.Filter;
+import hokiebytes.organization.Search;
+import hokiebytes.organization.Sort;
 
 /**
  * Main Class
@@ -100,31 +103,101 @@ public class Main {
         clearScreen();
 
         ArrayList<Review> reviews = DataHandler.getReviews().getArrayList();
+        ArrayList<Review> shownReviews = reviews;
 
-        System.out.println("┌──Reviews──────────────────────────────┐");
+        boolean displaying = true;
 
-        if (reviews.isEmpty()) {
-            System.out.println("│ No reviews have been added yet.        │");
-        } else {
-            for (int i = 0; i < reviews.size(); i++) {
-                Review review = reviews.get(i);
+        while (displaying) {
+            System.out.println("┌──Reviews──────────────────────────────┐");
+            System.out.println("│                                       │");
+            System.out.println("│ [1] View All Reviews                  │");
+            System.out.println("│ [2] Search                            │");
+            System.out.println("│ [3] Filter By Location                │");
+            System.out.println("│ [4] Sort                              │");
+            System.out.println("│ [5] Back                              │");
+            System.out.println("│                                       │");
+            System.out.println("├───────────────────────────────────────┘");
+            System.out.print("└ Choice: ");
 
-                System.out.println();
-                System.out.println("Review #" + (i + 1));
-                System.out.println("Meal: " + review.meal().name());
-                System.out.println(
-                        "Location: " + review.meal().location());
-                System.out.println("Rating: " + review.rating() + "/5");
+            int choice = detectMenuInput();
 
-                if (review.notes() != null
-                        && !review.notes().isEmpty()) {
-                    System.out.println("Notes: " + review.notes());
+            if (choice == 1) {
+                shownReviews = reviews;
+            } else if (choice == 2) {
+                System.out.print("└ Type a search term: ");
+                String searchTerm = input.nextLine();
+
+                shownReviews = Search.searchForReview(reviews, searchTerm);
+            } else if (choice == 3) {
+                System.out.print("└ Type the location to filter by: ");
+                String searchTerm = input.nextLine();
+
+                shownReviews = Filter.filterByLocation(shownReviews, searchTerm);
+            } else if (choice == 4) {
+                System.out.println("┌──Sort By──────────────────────────────┐");
+                System.out.println("│                                       │");
+                System.out.println("│ [1] Most Recent                       │");
+                System.out.println("│ [2] Least Recent                      │");
+                System.out.println("│ [3] Alphabetical (A-Z)                │");
+                System.out.println("│ [4] Alphabetical (Z-A)                │");
+                System.out.println("│ [5] Rating (Highest-Lowest)           │");
+                System.out.println("│ [6] Rating (Lowest-Highest)           │");
+                System.out.println("│                                       │");
+                System.out.println("├───────────────────────────────────────┘");
+                System.out.print("└ Choice: ");
+
+                int sortChoice = detectMenuInput();
+
+                if (sortChoice == 1) {
+                    shownReviews = Sort.sortByMostRecent(reviews, false);
+                } else if (sortChoice == 2) {
+                    shownReviews = Sort.sortByMostRecent(reviews, true);
+                } else if (sortChoice == 3) {
+                    shownReviews = Sort.sortAlphabetically(reviews, false);
+                } else if (sortChoice == 4) {
+                    shownReviews = Sort.sortAlphabetically(reviews, true);
+                } else if (sortChoice == 5) {
+                    shownReviews = Sort.sortByRating(reviews, false);
+                } else if (sortChoice == 6) {
+                    shownReviews = Sort.sortByRating(reviews, true);
+                } else {
+                    System.out.println("Invalid Choice!");
+                    pause();
+                    continue;
+                }
+            } else if (choice == 5) {
+                displaying = false;
+            } else {
+                System.out.println("Invalid Choice!");
+                pause();
+                continue;
+            }
+
+            System.out.println("┌──Reviews──────────────────────────────┐");
+
+            if (shownReviews.isEmpty()) {
+                System.out.println("│ No reviews have been added yet.        │");
+            } else {
+                for (int i = 0; i < shownReviews.size(); i++) {
+                    Review review = shownReviews.get(i);
+
+                    System.out.println();
+                    System.out.println("Review #" + (i + 1));
+                    System.out.println("Meal: " + review.meal().name());
+                    System.out.println(
+                            "Location: " + review.meal().location());
+                    System.out.println("Rating: " + review.rating() + "/5");
+
+                    if (review.notes() != null
+                            && !review.notes().isEmpty()) {
+                        System.out.println("Notes: " + review.notes());
+                    }
                 }
             }
-        }
 
-        System.out.println();
-        System.out.println("└───────────────────────────────────────┘");
+            System.out.println();
+            System.out.println("└───────────────────────────────────────┘");
+        }
 
         pause();
     }
