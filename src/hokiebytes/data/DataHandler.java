@@ -27,8 +27,6 @@ public final class DataHandler {
 
     private static Gson gson = new Gson();
 
-    private static boolean initialized = false;
-
     private static DataBuilder<Review> reviews = new DataBuilder<>();
     private static DataBuilder<Meal> meals = new DataBuilder<>();
     private static DataBuilder<String> knownLocations = new DataBuilder<>();
@@ -58,7 +56,6 @@ public final class DataHandler {
 
             saveData();
 
-            initialized = true;
             return true;
         } else {
             try {
@@ -124,7 +121,6 @@ public final class DataHandler {
                 System.out.println("│                              │");
                 System.out.println("└──────────────────────────────┘");
 
-                initialized = true;
                 return true;
             } catch (IOException e) {
                 Scanner input = new Scanner(System.in);
