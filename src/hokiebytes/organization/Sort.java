@@ -7,9 +7,17 @@ import java.util.Comparator;
 import hokiebytes.Review;
 
 /**
- * Provides methods for sorting reviews.
+ * Sort Class
+ * 
+ * <p>
+ * Utility class that provides methods for sorting reviews
+ * 
+ * @author Sreenidhi Tadigadapa (sreenidhit)
+ * @version 2026.09.21
  */
-public class Sort {
+public final class Sort {
+    private Sort() {
+    }
 
     /**
      * Sorts reviews based on when they were added.

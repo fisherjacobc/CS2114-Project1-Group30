@@ -5,9 +5,17 @@ import java.util.ArrayList;
 import hokiebytes.Review;
 
 /**
- * Provides methods for searching reviews.
+ * Search Class
+ * 
+ * <p>
+ * Utility class that provides methods for searching reviews
+ * 
+ * @author Sreenidhi Tadigadapa (sreenidhit)
+ * @version 2026.09.21
  */
-public class Search {
+public final class Search {
+    private Search() {
+    }
 
     /**
      * Searches meal names, locations, and notes.

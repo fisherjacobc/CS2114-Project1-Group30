@@ -5,9 +5,17 @@ import java.util.ArrayList;
 import hokiebytes.Review;
 
 /**
- * Provides methods for filtering reviews.
+ * Filter Class
+ * 
+ * <p>
+ * Utility class that provides methods for filtering reviews
+ * 
+ * @author Sreenidhi Tadigadapa (sreenidhit)
+ * @version 2026.09.21
  */
-public class Filter {
+public final class Filter {
+    private Filter() {
+    }
 
     /**
      * Filters reviews by dining location.
