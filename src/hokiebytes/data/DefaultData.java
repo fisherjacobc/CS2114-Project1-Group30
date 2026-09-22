@@ -2,6 +2,15 @@ package hokiebytes.data;
 
 import hokiebytes.Meal;
 
+/**
+ * DefaultData Class
+ * 
+ * <p>
+ * Utility class that stores default data
+ * 
+ * @author Jacob Fisher (fisherjc)
+ * @version 2026.09.18
+ */
 public final class DefaultData {
         private DefaultData() {
         }

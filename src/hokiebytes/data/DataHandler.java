@@ -12,6 +12,15 @@ import com.google.gson.Gson;
 import hokiebytes.Meal;
 import hokiebytes.Review;
 
+/**
+ * DataHandler Class
+ * 
+ * <p>
+ * Responsible for handling and serializing/deserializing data
+ * 
+ * @author Jacob Fisher (fisherjc)
+ * @version 2026.09.18
+ */
 public final class DataHandler {
     private DataHandler() {
     }
@@ -159,7 +168,7 @@ public final class DataHandler {
     }
 
     /**
-     * 
+     * Serialize and save data to file
      */
     public static void saveData() {
         Review[] reviewsArray = new Review[reviews.getArrayList().size()];
