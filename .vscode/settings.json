@@ -4,6 +4,7 @@
         "lib/**/*.jar"
     ],
     "java.autobuild.enabled": true,
+    "java.project.outputPath": "bin",
     "java.test.config": {
         "coverage": {
             "excludes": ["**/Main.java"]
