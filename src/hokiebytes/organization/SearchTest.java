@@ -135,4 +135,15 @@ public class SearchTest extends student.TestCase {
 
         assertTrue(result.isEmpty());
     }
+
+    /**
+     * Tests a null list.
+     */
+    public void testNullList() {
+        ArrayList<Review> result = Search.searchForReview(
+                null,
+                "Chicken");
+
+        assertTrue(result.isEmpty());
+    }
 }

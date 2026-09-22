@@ -113,4 +113,15 @@ public class FilterTest extends student.TestCase {
 
         assertTrue(result.isEmpty());
     }
+
+    /**
+     * Tests filtering a null list.
+     */
+    public void testNullList() {
+        ArrayList<Review> result = Filter.filterByLocation(
+                null,
+                "D2");
+
+        assertTrue(result.isEmpty());
+    }
 }
