@@ -362,8 +362,8 @@ Description/Purpose, Data & State, and Method Signatures
         - Returns an ArrayList only with reviews that strictly match the location inputted 
 
 ## System Diagram 
+<img width="430" height="477" alt="Screenshot 2026-09-22 140045" src="https://github.com/user-attachments/assets/6daaad8c-ecd4-4304-a8e0-865447563d69" />
 
- 
 
 ## Where Validation Lives 
 
